@@ -13,4 +13,4 @@ variables:
   - name: azure_subscription
     value: Azure Development Subscription
   - name: command_variables
-    value: '-var client_id="$(TF_VAR_CLIENT_ID)" -var client_secret="$(TF_VAR_CLIENT_SECRET)" -var subscription_id="$(TF_VAR_SUBSCRIPTION_ID)" -var tenant_id="$(TF_VAR_TENANT_ID)"'
+    value: '-var client_id="$(TF_VAR_CLIENT_ID)" -var client_secret="$(TF_VAR_CLIENT_SECRET)" -var subscription_id="$(TF_VAR_SUBSCRIPTION_ID)" -var tenant_id="$(TF_VAR_TENANT_ID)" -var administrator_login_password="$(TF_ADMINISTRATOR_PASSWORD)"'

@@ -6,8 +6,9 @@ resource "azurerm_storage_account" "tfstate_storage_account" {
     name = var.tfstate_storage_account_name
     location = var.location
     resource_group_name = azurerm_resource_group.tfstate_rg.name
-    access_tier = "Standard"
+    access_tier = "Hot"
     account_replication_type = "LRS"
+    account_tier = "Standard"
 }
 
 resource "azurerm_storage_container" "tfstate_container" {

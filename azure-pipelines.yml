@@ -16,7 +16,7 @@ resources:
   repositories:
   - repository: templates
     type: github
-    name: Junaid-447/azure-devops-pipeline-templates
+    name: Junaid-447/azure-devops-pipeline-template
     endpoint: github.com_pipeline_templates #Azure DevOps service connection with Github
     ref: refs/tags/v0.1.0 #Github tag version
 

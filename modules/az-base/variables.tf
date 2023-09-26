@@ -16,7 +16,9 @@ variable "tfstate_resource_group_name" {
 variable "location" {
   default = "East US"
 }
-
+variable "tfstate_storage_account_name" {
+  default = "tfstate_storage_account_name"
+}
 variable "tfstate_container" {
   default = "tfstate"
 }

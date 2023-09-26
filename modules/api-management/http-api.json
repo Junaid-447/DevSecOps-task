@@ -1,0 +1,40 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Internal HTTP API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/internal/api1": {
+      "get": {
+        "summary": "Get Data from Internal API",
+        "description": "Retrieve data from an internal HTTP API.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "email_address": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "cell_phone_number": {
+                  "type": "string",
+                  "pattern": "\\d{3} \\d{3} \\d{4}"
+                }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}

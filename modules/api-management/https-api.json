@@ -1,0 +1,54 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "My HTTPS external API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/external/api2": {
+      "get": {
+        "summary": "Get Data from External API",
+        "description": "Retrieve data from an external API over HTTPS.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "full_name": {
+                  "type": "string",
+                  "pattern": "[A-Z][a-z]{3,10} [A-Z][a-z]{3,20}"
+                },
+                "display_name": {
+                  "type": "string",
+                  "pattern": "[A-Z][a-z]{3,10}"
+                }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

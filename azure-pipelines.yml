@@ -1,0 +1,45 @@
+variables:
+- group: base-values
+- template: include-tf-pipeline-variables.yml
+
+pr: none
+
+trigger:
+  branches:
+    include:
+    - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    name: Junaid-447/azure-devops-pipeline-templates
+    endpoint: github.com_pipeline_templates #Azure DevOps service connection with Github
+    ref: refs/tags/v0.1.0 #Github tag version
+
+stages:
+- stage: Terraform_Plan_Apply
+  jobs:
+  - job: terraform_tasks
+    displayName: terraform_plan_apply_tasks
+    steps:
+    - template: include-terraform-install-steps.yml@templates
+    - template: include-terraform-init-steps.yml@templates
+    - template: include-terraform-plan-steps.yml@templates
+    - template: include-terraform-apply-steps.yml@templates
+
+- stage: Terraform_Cleanup
+  dependsOn: Terraform_Plan_Apply
+  jobs:
+  - job: cleanup_tasks
+    displayName: Cleanup
+    steps:
+    - template: include-terraform-install-steps.yml@templates
+    - template: include-terraform-init-steps.yml@templates
+    - template: include-terraform-plan-steps.yml@templates
+      parameters:
+        destroy: true
+    - template: include-terraform-destroy-steps.yml@templates

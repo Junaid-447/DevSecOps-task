@@ -1,0 +1,29 @@
+<policies>
+  <inbound>
+  <validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized. Access token is missing or invalid.">
+            <openid-config url="https://{{tenant-name}}.b2clogin.com/{{tenant-name}}.onmicrosoft.com/B2C_1_signupsignin1/v2.0/.well-known/openid-configuration" />
+            <audiences>
+                <audience>{{b2c-application-id}}</audience>
+            </audiences>
+            <issuers>
+                <issuer>https://{{tenant-name}}.b2clogin.com/{{issuer-id}}/v2.0/</issuer>
+            </issuers>
+        </validate-jwt>
+    <base />
+  </inbound>
+  <backend>
+    <base />
+    <set-backend-service base-url="{{base_url}}" />
+  </backend>
+  <outbound>
+    <base />
+  </outbound>
+  <on-error>
+    <base />
+  </on-error>
+    <choose>
+    <when condition="@(context.Request.IpAddress != null)">
+      <rate-limit-by-key calls="100" renewal-period="60" counter-key="@(context.Request.IpAddress)" />
+    </when>
+  </choose>
+</policies>

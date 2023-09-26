@@ -1,0 +1,16 @@
+#Define base-values variable group with below values
+# TF_VAR_CLIENT_ID
+# TF_VAR_CLIENT_SECRET
+# TF_VAR_SUBSCRIPTION_ID
+# TF_VAR_TENANT_ID
+
+variables:
+  - group: base-values
+  - name: terraform_version
+    value: 0.13.6
+  - name: terraform_working_directory
+    value: "./"
+  - name: azure_subscription
+    value: Azure Development Subscription(c510a346-7703-4243-a76a-a972f234f956)
+  - name: command_variables
+    value: '-var client_id="$(TF_VAR_CLIENT_ID)" -var client_secret="$(TF_VAR_CLIENT_SECRET)" -var subscription_id="$(TF_VAR_SUBSCRIPTION_ID)" -var tenant_id="$(TF_VAR_TENANT_ID)"'

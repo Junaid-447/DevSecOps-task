@@ -1,11 +1,11 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "My HTTPS API",
+    "title": "My HTTPS external API",
     "version": "1.0"
   },
   "paths": {
-    "/external/api": {
+    "/external/api2": {
       "get": {
         "summary": "Get Data from External API",
         "description": "Retrieve data from an external API over HTTPS.",
@@ -15,7 +15,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  // Define your response schema here
+                  "full_name": {
+                  "type": "string",
+                  "pattern": "[A-Z][a-z]{3,10} [A-Z][a-z]{3,20}"
+                },
+                "display_name": {
+                  "type": "string",
+                  "pattern": "[A-Z][a-z]{3,10}"
+                }
                 }
               }
             }
